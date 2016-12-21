@@ -6,7 +6,7 @@ SHELL=/bin/bash -e -x
 # dx cd $DX_PROJECT_CONTEXT_ID:
 # sudo -s
 
-R: 
+all:
 	#
 	# install R 3.2.3 from source (http://askubuntu.com/a/798731)
 	#
@@ -24,8 +24,7 @@ R:
 	$(MAKE) -C ./R-3.2.3 install
 	R --version 1>&2
 	ldd /usr/local/lib/R/bin/exec/R 1>&2
-	
-Rdeps:
+
 	#
 	# install VCFscope's CRAN & Bioconductor dependencies
 	#
@@ -36,8 +35,6 @@ Rdeps:
 	# THE URL will stop working after 20/12/2018
 	wget https://dl.dnanex.us/F/D/j1Y3PXb9qK78Qxpg9xykpQqF584J3gV20Y23gZ1f/BSgenome.HSapiens.1000g.37d5_1.0.0.tar.gz
 	R CMD INSTALL BSgenome.HSapiens.1000g.37d5_1.0.0.tar.gz
-
-all: R Rdeps
 
 # we have already included binaries for bcftools, bedtools, bgzip, tabix, samtools.
 # RTG is included in vcfscope_reporter_resources_bundle-2.0.tar
