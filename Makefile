@@ -6,7 +6,7 @@ SHELL=/bin/bash -e -x
 # dx cd $DX_PROJECT_CONTEXT_ID:
 # sudo -s
 
-R: /usr/local/lib/R/bin/exec/R
+R: 
 	#
 	# install R 3.2.3 from source (http://askubuntu.com/a/798731)
 	#
@@ -16,7 +16,7 @@ R: /usr/local/lib/R/bin/exec/R
 	which f77 || DEBIAN_FRONTEND=noninteractive apt-get --yes install fort77
 	which g++ || apt-get --yes install g++
 	which gfortran || apt-get --yes install gfortran
-	which java || DEBIAN_FRONTEND=noninteractive apt-get install --yes openjdk-7-jdk-headless
+	which java || DEBIAN_FRONTEND=noninteractive apt-get install --yes openjdk-7-jre-headless openjdk-7-jdk
 	#apt-get --yes install xorg-dev	# many dependencies; likely not needed in a headless environment
 	
 	cd ./R-3.2.3 && ./configure --with-x=no 1>&2
@@ -25,7 +25,7 @@ R: /usr/local/lib/R/bin/exec/R
 	R --version 1>&2
 	ldd /usr/local/lib/R/bin/exec/R 1>&2
 	
-Rdeps: /usr/local/lib/R/site-library/BSgenome.HSapiens.1000g.37d5/R/BSgenome.HSapiens.1000g.37d5.rdb
+Rdeps:
 	#
 	# install VCFscope's CRAN & Bioconductor dependencies
 	#
