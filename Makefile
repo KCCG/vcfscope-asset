@@ -18,9 +18,11 @@ all:
 	which gfortran || apt-get --yes install gfortran
 	which java || DEBIAN_FRONTEND=noninteractive apt-get install --yes openjdk-7-jre-headless openjdk-7-jdk
 	#apt-get --yes install xorg-dev	# many dependencies; likely not needed in a headless environment
+	DEBIAN_FRONTEND=noninteractive apt-get install libopenblas-base
 	
-	cd ./R-3.2.3 && ./configure --with-x=no 1>&2
+	cd ./R-3.2.3 && ./configure --with-x=no --with-blas 1>&2
 	$(MAKE) -C ./R-3.2.3 -j4
+	ln -s /usr/lib/libblas.so.3 ./R-3.2.3/lib/libRblas.so
 	$(MAKE) -C ./R-3.2.3 install
 	R --version 1>&2
 	ldd /usr/local/lib/R/bin/exec/R 1>&2
