@@ -6,12 +6,10 @@ SHELL=/bin/bash -e -x
 # dx cd $DX_PROJECT_CONTEXT_ID:
 # sudo -s
 
-all:
-	#
-	# install R 3.2.3 from source (http://askubuntu.com/a/798731)
-	#
-	wget https://cran.rstudio.com/src/base/R-3/R-3.2.3.tar.gz
-	tar -xf R-3.2.3.tar.gz
+all: R_dependencies R R_packages
+
+.PHONY: R_dependencies
+R_dependencies:
 	which gcc || apt-get --yes install gcc
 	which f77 || DEBIAN_FRONTEND=noninteractive apt-get --yes install fort77
 	which g++ || apt-get --yes install g++
@@ -19,14 +17,22 @@ all:
 	which java || DEBIAN_FRONTEND=noninteractive apt-get install --yes openjdk-7-jre-headless openjdk-7-jdk
 	#apt-get --yes install xorg-dev	# many dependencies; likely not needed in a headless environment
 	DEBIAN_FRONTEND=noninteractive apt-get install libopenblas-base
-	
-	cd ./R-3.2.3 && ./configure --with-x=no --with-blas 1>&2
+
+.PHONY: R
+R:
+	#
+	# install R 3.2.3 from source (http://askubuntu.com/a/798731)
+	#
+	wget https://cran.rstudio.com/src/base/R-3/R-3.2.3.tar.gz
+	tar -xf R-3.2.3.tar.gz
+	cd ./R-3.2.3 && ./configure --with-x=no --with-blas --with-lapack 1>&2
 	$(MAKE) -C ./R-3.2.3 -j4
-	ln -s /usr/lib/libblas.so.3 ./R-3.2.3/lib/libRblas.so
 	$(MAKE) -C ./R-3.2.3 install
 	R --version 1>&2
 	ldd /usr/local/lib/R/bin/exec/R 1>&2
 
+.PHONY: R_packages
+R_packages:
 	#
 	# install VCFscope's CRAN & Bioconductor dependencies
 	#
