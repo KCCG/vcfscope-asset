@@ -1,9 +1,8 @@
-This is a DNAnexus Asset Bundle [1,2], to support the running of VCFscope.
+This is a DNAnexus Asset Bundle [1,2], to support the running of kccg-basespace-authenticator, and kccg-basespace-fetcher.
 
-It essentially installs R 3.2.3, and the necessary dependencies.
-If you're not using DNAnexus, then the Makefile should work on an Ubuntu 14.04 instance. The combination of dxasset.json and Makefile
-creates a snapshot of a system, with the appropriate dependencies installed in the appropriate system locations.
+It essentially installs the bs and basemount commandline utilities [3], v
 
 # References
 1. https://wiki.dnanexus.com/Developer-Tutorials/Asset-Build-Process
 2. https://wiki.dnanexus.com/Asset-Bundle
+3. https://help.basespace.illumina.com/articles/descriptive/basespace-cli

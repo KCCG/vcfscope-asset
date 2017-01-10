@@ -1,7 +1,7 @@
 {
-  "name": "VCFscope Assets",
-  "title": "VCFscope Assets",
-  "description": "Supporting R packages and binaries for running VCFscope",
+  "name": "kccg-basespace Assets",
+  "title": "kccg-basespace Assets (KCCG)",
+  "description": "Installation of bs cli utility",
   "version": "0.0.1",
   "distribution": "Ubuntu",
   "instanceType": "mem2_ssd2_x4",
