@@ -12,7 +12,7 @@
     "/dev/stdout",
     "/dx_stderr",
     "/dx_stdout",
-    "/var/lib/apt/extended_states", 
+    "/var/lib/apt/extended_states",
     "/var/lib/ucf",
     "/var/lib/ucf/cache",
     "/var/lib/ucf/hashfile.0",

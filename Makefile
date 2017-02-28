@@ -7,8 +7,8 @@ SHELL=/bin/bash -e -x
 # sudo -s
 
 all: R_dependencies R R_packages
+.PHONY: all
 
-.PHONY: R_dependencies
 R_dependencies:
 	which gcc || apt-get --yes install gcc
 	which f77 || DEBIAN_FRONTEND=noninteractive apt-get --yes install fort77
@@ -18,7 +18,6 @@ R_dependencies:
 	#apt-get --yes install xorg-dev	# many dependencies; likely not needed in a headless environment
 	DEBIAN_FRONTEND=noninteractive apt-get install libopenblas-base
 
-.PHONY: R
 R:
 	#
 	# install R 3.2.3 from source (http://askubuntu.com/a/798731)
@@ -31,7 +30,6 @@ R:
 	R --version 1>&2
 	ldd /usr/local/lib/R/bin/exec/R 1>&2
 
-.PHONY: R_packages
 R_packages:
 	#
 	# install VCFscope's CRAN & Bioconductor dependencies
